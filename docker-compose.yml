@@ -1,0 +1,11 @@
+services:
+  nav_waypoints:
+    build: .
+    image: bayu_ros:test
+    environment:
+      - "ROS_MASTER_URI=http://localhost:11311"
+    volumes:
+      - ../nav_waypoints:/catkin_ws/src/nav_waypoints
+    command: ["bash","-c",". /opt/ros/noetic/setup.bash && cd catkin_ws && catkin_make && . devel/setup.bash && rosrun nav_waypoints nav_waypoints.py"]
+    tty: true
+    network_mode: "host"
